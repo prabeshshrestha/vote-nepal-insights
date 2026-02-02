@@ -1,3 +1,5 @@
+"use client";
+
 import { Candidate } from "@/types/election";
 import { getShortPartyName } from "@/hooks/useElectionData";
 import { User, MapPin, GraduationCap, Calendar } from "lucide-react";

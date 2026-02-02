@@ -1,5 +1,20 @@
+"use client";
+
 import { LucideIcon } from "lucide-react";
 import { cn } from "@/lib/utils";
+
+// Custom formatter to convert numbers to Nepali numerals consistently
+function formatNepaliNumber(num: number): string {
+  const nepaliDigits = ['०', '१', '२', '३', '४', '५', '६', '७', '८', '९'];
+  return num
+    .toLocaleString('en-US') // Use consistent formatting with commas
+    .split('')
+    .map(char => {
+      const digit = parseInt(char);
+      return isNaN(digit) ? char : nepaliDigits[digit];
+    })
+    .join('');
+}
 
 interface StatCardProps {
   title: string;
@@ -59,7 +74,7 @@ export function StatCard({
       </div>
       <div className="mt-3">
         <p className="text-3xl font-bold text-foreground">
-          {typeof value === "number" ? value.toLocaleString("ne-NP") : value}
+          {typeof value === "number" ? formatNepaliNumber(value) : value}
         </p>
         {trend && (
           <p

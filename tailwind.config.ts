@@ -18,8 +18,8 @@ export default {
     },
     extend: {
       fontFamily: {
-        sans: ['Inter', 'Noto Sans Devanagari', 'system-ui', 'sans-serif'],
-        nepali: ['Noto Sans Devanagari', 'Mukta', 'system-ui', 'sans-serif'],
+        sans: ['var(--font-inter)', 'var(--font-devanagari)', 'system-ui', 'sans-serif'],
+        nepali: ['var(--font-devanagari)', 'Mukta', 'system-ui', 'sans-serif'],
       },
       colors: {
         border: "hsl(var(--border))",

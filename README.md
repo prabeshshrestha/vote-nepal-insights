@@ -29,13 +29,12 @@ An interactive web application to explore Nepal election candidates data from th
 
 ## Tech Stack
 
-- **Framework**: React 18 with TypeScript
-- **Build Tool**: Vite
+- **Framework**: Next.js 14 (App Router) with TypeScript
 - **Styling**: Tailwind CSS + shadcn/ui components
 - **Charts**: Recharts
 - **State Management**: TanStack React Query
 - **Forms**: React Hook Form + Zod validation
-- **Routing**: React Router v6
+- **Theming**: next-themes
 
 ## Prerequisites
 
@@ -62,7 +61,7 @@ npm install
 npm run dev
 ```
 
-The app will be available at `http://localhost:8080`
+The app will be available at `http://localhost:3000`
 
 ### Build
 
@@ -70,21 +69,8 @@ The app will be available at `http://localhost:8080`
 # Production build
 npm run build
 
-# Development build
-npm run build:dev
-
-# Preview production build
-npm run preview
-```
-
-### Testing
-
-```bash
-# Run tests once
-npm run test
-
-# Run tests in watch mode
-npm run test:watch
+# Start production server
+npm run start
 ```
 
 ### Linting
@@ -97,11 +83,15 @@ npm run lint
 
 ```
 src/
-├── pages/                    # Route pages
-│   ├── Index.tsx            # Home page with stats overview
-│   ├── CandidatesPage.tsx   # Full candidates list with filtering
-│   ├── AnalyticsPage.tsx    # Detailed analytics & charts
-│   └── NotFound.tsx         # 404 page
+├── app/                      # Next.js App Router pages
+│   ├── layout.tsx           # Root layout with providers
+│   ├── page.tsx             # Home page with stats overview
+│   ├── globals.css          # Global styles and Tailwind config
+│   ├── not-found.tsx        # 404 page
+│   ├── candidates/
+│   │   └── page.tsx         # Full candidates list with filtering
+│   └── analytics/
+│       └── page.tsx         # Detailed analytics & charts
 │
 ├── components/              # Reusable UI components
 │   ├── layout/              # Layout components (Header, Layout)
@@ -109,10 +99,14 @@ src/
 │   ├── filters/             # Filter panel components
 │   ├── charts/              # Chart components (Party, Gender, etc.)
 │   ├── dashboard/           # Dashboard stat cards
-│   └── ui/                  # shadcn/ui base components
+│   ├── ui/                  # shadcn/ui base components
+│   ├── theme-provider.tsx   # Theme context provider
+│   └── query-provider.tsx   # React Query provider
 │
 ├── hooks/                   # Custom React hooks
-│   └── useElectionData.ts   # Data filtering and aggregation hooks
+│   ├── useElectionData.ts   # Data filtering and aggregation hooks
+│   ├── use-mobile.tsx       # Mobile detection hook
+│   └── use-toast.ts         # Toast notification hook
 │
 ├── types/                   # TypeScript interfaces
 │   └── election.ts          # Candidate and filter types
@@ -121,12 +115,8 @@ src/
 │   ├── mockCandidates.ts    # Election candidates dataset
 │   └── mappings.ts          # English-to-Nepali search mappings
 │
-├── lib/                     # Utility functions
-│   └── utils.ts
-│
-├── App.tsx                  # Router configuration
-├── main.tsx                 # Application entry point
-└── index.css                # Global styles and Tailwind config
+└── lib/                     # Utility functions
+    └── utils.ts
 ```
 
 ## Routes
